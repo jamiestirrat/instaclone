@@ -2,12 +2,16 @@
 //Change Icons to match the Intention for Circle
 
 import React from 'react';
-import {NativeRouter, Switch, Route} from 'react-router-native';
 import { t } from  'react-native-tailwindcss';
 import {SafeAreaView} from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import { faHome, faSearch, faUser, faHeart, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
-// Components
+// Components - is BottomNav needed after we use StackNavigator?
 import BottomNav from './app/components/BottomNav';
+import AddPhotoButton from './app/components/AddPhotoButton';
 
 // Pages
 import Home from './app/screens/Home';
@@ -16,25 +20,45 @@ import AddPhoto from './app/screens/AddPhoto';
 import Likes from './app/screens/Likes';
 import MyPhotos from './app/screens/MyPhotos';
 
-
-// Main App
-function App() {
-  return (
-    <SafeAreaView style={[t.bgGray200, t.flex, t.hFull , t.wFull]}>
-      <Switch>
-        <Route exact path='/' component={Home}/>
-        <Route exact path='/search' component={Search} />
-        <Route exact path='/addPhoto' component={AddPhoto} />
-        <Route exact path='/likes' component={Likes} />
-        <Route exact path='/myPhotos' component={MyPhotos} />
-      </Switch>
-      <BottomNav/>
-    </SafeAreaView>
-  );
-}
-
-export default  () => (
-  <NativeRouter>
-    <App/>
-  </NativeRouter>
+const TabNavigator = createBottomTabNavigator(
+  {
+  Home: { screen: Home,
+          navigationOptions: {
+            headerMode: false,
+            tabBarIcon: () => <FontAwesomeIcon size={30} icon={faHome}/>
+           }
+        },
+  Search: { screen: Search,
+            navigationOptions: {
+              headerMode: false,
+              tabBarIcon: () => <FontAwesomeIcon size={30} icon={faSearch}/>
+           }
+        },
+  AddPhoto: { screen: AddPhoto,
+              navigationOptions: {
+                headerTitle: "Upload Photo",
+                tabBarIcon: <AddPhotoButton/>
+           }
+        },
+  Likes: {screen: Likes,
+          navigationOptions: {
+            headerMode: false,
+            tabBarIcon: () => <FontAwesomeIcon size={30} icon={faHeart}/>
+           }
+        },
+  MyPhotos: {screen: MyPhotos,
+             navigationOptions: {
+               headerMode: false,
+               tabBarIcon: () => <FontAwesomeIcon size={30} icon={faUser}/>
+             }
+           }
+        },
+  {
+    initialRouteName: "Home", // headerMode: 'none'
+    tabBarOptions: {
+      showLabel: false
+      }
+    }
 )
+
+export default createAppContainer(TabNavigator);

@@ -1,11 +1,13 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, SafeAreaView } from 'react-native'
 
 const AddPhoto = () => {
   return (
-    <View>
-      <Text>AddPhoto</Text>
-    </View>
+    <SafeAreaView>
+      <View>
+        <Text>AddPhoto</Text>
+      </View>
+    </SafeAreaView>
   )
 }
 export default AddPhoto

@@ -1,11 +1,13 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, SafeAreaView } from 'react-native'
 
 const MyPhotos = () => {
   return (
-    <View>
-      <Text>MyPhotos</Text>
-    </View>
+    <SafeAreaView>
+      <View>
+        <Text>MyPhotos</Text>
+      </View>
+    </SafeAreaView>
   )
 }
 export default MyPhotos

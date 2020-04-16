@@ -1,11 +1,13 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, SafeAreaView } from 'react-native'
 
 const Likes = () => {
   return (
-    <View>
-      <Text>Likes</Text>
-    </View>
+    <SafeAreaView>
+      <View>
+        <Text>Likes</Text>
+      </View>
+    </SafeAreaView>
   )
 }
 export default Likes
